@@ -76,7 +76,7 @@
 
     $("article img").addClass("image-center");
 
-    $("article p").eq(-1).remove();
+    $("article p:last").remove();
 
     $("#title").css("font-size", Math.floor(Math.random() * 100));
 
@@ -84,17 +84,16 @@
     $("ol").append($newListItem);
 
     const $newAside = $("<p>The aside was silly, this is way way cooler</p>");
-    $("aside").html("<p>The aside was silly, this is way way cooler</p>");
+    $("aside").html($newAside);
 
-    $(".mb-5").on("change", ".form-control", function (evt) {
+    const $inputFields = $(".form-control");
+    $inputFields.on("change", function (evt) {
 
-      const $newColors = $(".form-control");
+      const newRed = $inputFields.eq(0).val();
+      const newBlue = $inputFields.eq(1).val();
+      const newGreen = $inputFields.eq(2).val();
 
-      const newRedColor = $newColors.eq(0).val();
-      const newBlueColor = $newColors.eq(1).val();
-      const newGreenColor = $newColors.eq(2).val();
-
-      $("body").css('background-color', `rgb(${newRedColor},${newGreenColor},${newBlueColor})`);
+      $("body").css('background-color', `rgb(${newRed},${newGreen},${newBlue})`);
     });
 
     $("img").on("click", function (evt) {
